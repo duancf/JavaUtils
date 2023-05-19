@@ -135,9 +135,4 @@ public class EmptyUtil {
         return !isEmpty(obj);
     }
 
-    public static void main(String[] args) {
-        String test1 = null;
-        System.out.println(isEmpty(test1));
-    }
-
 }
