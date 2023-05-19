@@ -1,3 +1,3 @@
 # java基础工具类
 
-## 1.EmptyUtil --集合字符串判空
+### [EmptyUtil](https://github.com/duancf/JavaUtils/blob/master/JavaUtils/src/main/tool/EmptyUtil.java) --集合字符串判空 
