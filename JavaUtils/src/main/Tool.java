@@ -3,8 +3,9 @@ package main;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <p></p>
@@ -22,34 +23,22 @@ import java.util.Date;
  */
 public class Tool {
 
-    public static Date addYear(Date date, int years) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(1, years);
-        return cal.getTime();
-    }
-    public static Date formatStringToDate(String time, String format) {
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-        Date date = null;
-
-        try {
-            date = sdf.parse(time);
-        } catch (ParseException var5) {
-
+    public static Date test(Date date, int amount){
+        if (date == null) {
+            throw new IllegalArgumentException("The date must not be null");
         }
-
-        return date;
-    }
-    public static Date addDate(Date date, int days) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(5, days);
-        return cal.getTime();
+        // getInstance() returns a new object, so this method is thread safe.
+        final Calendar c = Calendar.getInstance();
+        c.setLenient(false);
+        c.setTime(date);
+        c.set(Calendar.DAY_OF_MONTH, amount);
+        return c.getTime();
     }
 
 
     public static void main(String[] args) {
-        System.out.println(addDate(addYear(formatStringToDate("2023-05-22", "yyyy-MM-dd"), 1), -1));
-        System.out.println("124");
+        String text = "-3.4免1.5个月租金2 4df455";
+        System.out.println(text.replaceAll("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])", "%s"));
+        System.out.println(test(new Date(), 2).getTime());
     }
 }

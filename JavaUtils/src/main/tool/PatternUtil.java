@@ -1,5 +1,8 @@
 package main.tool;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -18,6 +21,18 @@ import java.util.regex.Pattern;
  */
 public class PatternUtil {
 
+    public static Pattern getPattern(String regex) {
+        try {
+            if (regex == null) {
+                throw new Exception("regex为空");
+            }
+            return Pattern.compile(regex);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     /**
      * 检验字符串是否匹配
      * @param str       需要校验的字符串
@@ -26,7 +41,7 @@ public class PatternUtil {
      */
     public static Boolean matches(String str, String regex){
         try{
-            Pattern pattern = Pattern.compile(regex);
+            Pattern pattern = getPattern(regex);
             return pattern.matcher(str).matches();
         }catch (Exception e){
             System.out.println("【matches】正则判断报错！e=" + e.getMessage());
@@ -44,12 +59,28 @@ public class PatternUtil {
     public static Boolean numberNMatches(String str, String regex, Integer n){
         try{
             String regexStr = String.format(regex, n);
-            Pattern pattern = Pattern.compile(regexStr);
+            Pattern pattern = getPattern(regexStr);
             return pattern.matcher(str).matches();
         }catch (Exception e){
             System.out.println("【matches】正则判断报错！e=" + e.getMessage());
             return false;
         }
+    }
+
+    /**
+     * 获取符合正则的子字符串
+     * @param text
+     * @param regex
+     * @return
+     */
+    public static List<String> getRegexStrFromString(String text, String regex) {
+        Pattern pattern = getPattern(regex);
+        Matcher matcher = pattern.matcher(text);
+        List<String> matchStrList = new ArrayList<>();
+        while (matcher.find()) {
+            matchStrList.add(matcher.group());
+        }
+        return matchStrList;
     }
 
     class Regex{
@@ -68,6 +99,11 @@ public class PatternUtil {
          * 中文字符正则
          */
         public static final String CHINESE_ZH_CHAR_REGEX = "[\\u4E00-\\u9FA5]";
+
+        /**
+         * 整数或小数正则
+         */
+        public static final String NUMBER_DECIMAL_REGEX = "([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])";
 
         /**
          * 车牌号正则
