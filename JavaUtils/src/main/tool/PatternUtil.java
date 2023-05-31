@@ -135,18 +135,89 @@ public class PatternUtil {
          */
         public static final String EMAIL_REGEX = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
 
+        /**
+         * 手机号码正则
+         * 中国电信号段
+         *
+         * 133、153、173、177、180、181、189、190、191、193、199
+         *
+         * 中国联通号段
+         *
+         * 130、131、132、145、155、156、166、167、171、175、176、185、186、196
+         *
+         * 中国移动号段
+         *
+         * 134(0-8)、135、136、137、138、139、1440、147、148、150、151、152、157、158、159、172、178、182、183、184、187、188、195、197、198
+         *
+         * 中国广电号段
+         *
+         * 192
+         *
+         * 其他号段
+         *
+         * 14号段部分为上网卡专属号段：中国联通145，中国移动147，中国电信149
+         *
+         * 虚拟运营商：
+         *
+         * 电信：1700、1701、1702、162
+         * 移动：1703、1705、1706、165
+         * 联通：1704、1707、1708、1709、171、167
+         * 卫星通信：1349、174
+         * 物联网：140、141、144、146、148
+         */
+        public static final String PHONE_REGEX = "^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\\d{8}$";
 
+        /**
+         * 身份证号正则 15|18
+         *
+         * 地址码长6位
+         * 以数字1-9开头
+         * 后5位为0-9的数字
+         *
+         *
+         * 年份码长4位
+         * 以数字18，19或20开头
+         * 剩余两位为0-9的数字
+         *
+         *
+         * 月份码长2位
+         * 第一位数字为0，第二位数字为1-9
+         * 或者第一位数字为1，第二位数字为0-2
+         *
+         *
+         * 日期码长2位
+         * 第一位数字为0-2，第二位数字为1-9
+         * 或者是10，20，30，31
+         *
+         *
+         * 顺序码长3位
+         * 顺序码是数字
+         *
+         *
+         * 校验码长1位
+         * 可以是数字，字母x或字母X
+         */
+        public static final String ID_CARD_REGEX = "^[1-9]\\d{5}(18|19|20)\\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
+
+        /**
+         * 中国邮政编码正则
+         * 6位
+         */
+        public static final String POSTAL_CODE_REGEX = "^[1-9]\\d{5}$";
     }
 
     public static void main(String[] args) {
-        System.out.println(matches("我", Regex.CHINESE_ZH_CHAR_REGEX));
-        System.out.println(numberNMatches("12", Regex.NUMBER_N_REGEX, 1));
-        System.out.println(matches("京B20000", Regex.CAR_PLATE_REGEX));
-        System.out.println(matches("B20000", Regex.WE_CHAT_REGEX));
-        System.out.println(matches("20000000000", Regex.QQ_REGEX));
-        System.out.println(matches("Password123#", Regex.PASSWORD_COMPLEX_REGEX));
-        System.out.println(matches("name123", Regex.USER_NAME_COMPLEX_REGEX));
-        System.out.println(matches("Password123qq.com", Regex.EMAIL_REGEX));
-        System.out.println(matches("1234", Regex.NUMBER_REGEX));
+//        System.out.println(matches("我", Regex.CHINESE_ZH_CHAR_REGEX));
+//        System.out.println(numberNMatches("12", Regex.NUMBER_N_REGEX, 1));
+//        System.out.println(matches("京B20000", Regex.CAR_PLATE_REGEX));
+//        System.out.println(matches("B20000", Regex.WE_CHAT_REGEX));
+//        System.out.println(matches("20000000000", Regex.QQ_REGEX));
+//        System.out.println(matches("Password123#", Regex.PASSWORD_COMPLEX_REGEX));
+//        System.out.println(matches("name123", Regex.USER_NAME_COMPLEX_REGEX));
+//        System.out.println(matches("Password123qq.com", Regex.EMAIL_REGEX));
+//        System.out.println(matches("1234", Regex.NUMBER_REGEX));
+//        System.out.println("手机号校验：" + matches("12513286813", Regex.PHONE_REGEX));
+//        System.out.println("身份证号校验：" + matches("4127261999111111111", Regex.ID_CARD_REGEX));
+        System.out.println("邮政编码校验：" + matches("412726", Regex.POSTAL_CODE_REGEX));
     }
 }
