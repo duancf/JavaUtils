@@ -334,6 +334,15 @@ public class DateUtil {
         }
     }
 
+    public static Date getCurrentZeroPointDate(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        return calendar.getTime();
+    }
+
     public static void main(String[] args) {
         //System.out.println("dateToString:" + dateToString(new Date(), DateStyle.YYYY_MM_DD_HH_MM_CN.value));
         //ystem.out.println("getLastYear:" + getLastYear());
@@ -347,7 +356,7 @@ public class DateUtil {
         //System.out.println("setDay:" + setDay(new Date(), 32));
         //System.out.println("setMonth:" + formatDate(setMonth(new Date(), 7), DateStyle.YYYY_MM_DD_HH_MM_SS_DOT.value));
         //System.out.println("setYear:" + formatDate(setYear(new Date(), 20000), DateStyle.YYYY_MM_DD_HH_MM_SS_DOT.value));
-        System.out.println("setSecond:" + formatDate(setMillSecond(new Date(), 2000), DateStyle.YYYY_MM_DD_T_HH_MM_SS_Z.value));
-
+        //System.out.println("setSecond:" + formatDate(setMillSecond(new Date(), 2000), DateStyle.YYYY_MM_DD_T_HH_MM_SS_Z.value));
+        System.out.println(formatDate(getCurrentZeroPointDate(), DateStyle.YYYY_MM_DD_HH_MM_SS_DOT.value));
     }
 }
