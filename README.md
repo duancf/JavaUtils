@@ -8,3 +8,7 @@
 ### [NumberUtil](https://github.com/duancf/JavaUtils/blob/master/JavaUtils/src/main/tool/NumberUtil.java) --数字相关工具类
 #### 获取不固定参数数量最大值、最小值;获取集合的最大值、最小值;集合数字做加法;两数做除法、减法；
 
+
+
+
+
