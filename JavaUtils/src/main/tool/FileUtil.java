@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
  */
 public class FileUtil {
 
-
     /**
      * 获取某文件夹下下一级所有文件名称（包含文件夹）
      * @param path      文件夹路径
@@ -26,7 +25,7 @@ public class FileUtil {
     }
 
     /**
-     * 获取某文件下文件夹和文件
+     * 获取某文件下文件夹和文件名称
      * @param path      文件路径
      * @param isFile    null:文件夹+文件，true：文件夹（eg：下载），false：文件（eg：QR.jpg）
      * @return
@@ -47,19 +46,56 @@ public class FileUtil {
         }
     }
 
-    //todo
-    public static void createFile(String path){
-        File file = new File(path);
-        if(file.exists()){
-            System.out.println("文件已存在！");
-            return ;
+    /**
+     * 生成一个临时文件
+     * @param path          文件路径
+     * @param fileName      文件名称
+     * @param fileType      文件类型
+     * @return              文件（生成的文件名称=fileName+随机数） eg:temp3697293002015269726.txt
+     */
+    public static File createTempFile(String path, String fileName, String fileType){
+        try{
+            File tempFile = File.createTempFile(fileName, fileType, new File(path));
+            return tempFile;
+        }catch (Exception e){
+            System.out.println("创建失败！e=" + e.getMessage());
         }
+        return null;
     }
 
-
+    /**
+     * 创建文件
+     * @param path          文件路径
+     * @param fileName      文件名称
+     * @param fileType      文件类型
+     * @return              文件
+     */
+    public static File createFile(String path, String fileName, String fileType){
+        if(StringUtil.anyEmpty(path, fileName, fileType)){
+            System.out.println("参数错误！");
+            return null;
+        }
+        String filePath = path + fileName + "." + fileType;
+        File file = new File(filePath);
+        if(file.exists()){
+            System.out.println("文件已存在！");
+            return null;
+        }
+        try {
+            boolean success = file.createNewFile();
+            if(success){
+                return file;
+            }
+        }catch (Exception e){
+            System.out.println("创建失败！e=" + e.getMessage());
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         System.out.println("======================测试文件工具类====================");
         System.out.println(getFileNameList("d://", false));
+        File temFile = createTempFile("d://", "duan", ".txt");
+        System.out.println(temFile.getAbsolutePath());
     }
 }
