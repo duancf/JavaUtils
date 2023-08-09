@@ -62,6 +62,135 @@ public class StringUtil {
     }
 
     /**
+     * 判断字符串是否是空白（包含空格+null+""）
+     * @param str       字符串
+     * @return          true/false
+     */
+    public static boolean notBlank(CharSequence str) {
+        return !isBlank(str);
+    }
+
+    /**
+     * 去除前后空格
+     * @param str   字符串
+     * @return      去除前后空格的字符串
+     */
+    public static String trim(String str) {
+        return str == null ? null : str.trim();
+    }
+
+    /**
+     * 去除前后空格
+     * @param str   字符串
+     * @return      去除空格的字符串
+     * 注释：（字符串为空，返回null）
+     */
+    public static String trimToNull(String str) {
+        String ts = trim(str);
+        return isEmpty(ts) ? null : ts;
+    }
+
+    /**
+     * 去除前后空格
+     * @param str   字符串
+     * @return      去除空格的字符串
+     * 注释：（字符串为null，返回“”）
+     */
+    public static String trimToEmpty(String str) {
+        return str == null ? "" : str.trim();
+    }
+
+    /**
+     * 截取字符串
+     * @param str           字符串
+     * @param maxWidth      截取的长度
+     * @return              被截取后的字符串
+     */
+    public static String truncate(String str, int maxWidth) {
+        return truncate(str, 0, maxWidth);
+    }
+
+    /**
+     * 截取字符串
+     * @param str       字符串
+     * @param offset    开始的位置（0开始）
+     * @param maxWidth  截取的长度
+     * @return          被截取的字符串
+     */
+    public static String truncate(String str, int offset, int maxWidth) {
+        if (offset < 0) {
+            throw new IllegalArgumentException("offset cannot be negative");
+        } else if (maxWidth < 0) {
+            throw new IllegalArgumentException("maxWith cannot be negative");
+        } else if (str == null) {
+            return null;
+        } else if (offset > str.length()) {
+            return "";
+        } else if (str.length() > maxWidth) {
+            int ix = offset + maxWidth > str.length() ? str.length() : offset + maxWidth;
+            return str.substring(offset, ix);
+        } else {
+            return str.substring(offset);
+        }
+    }
+
+    /**
+     * 查询子字符串所在位置
+     * @param seq           被查字符串
+     * @param searchSeq     查找的字符串
+     * @return              int
+     */
+    public static int indexOf(CharSequence seq, CharSequence searchSeq) {
+        return seq != null && searchSeq != null ? seq.toString().indexOf(searchSeq.toString(), 0) : -1;
+    }
+
+    /**
+     * 查询子字符串所在位置
+     * @param seq           被查字符串
+     * @param searchSeq     查找的字符串
+     * @param startPos      开始查询的位置
+     * @return              int
+     */
+    public static int indexOf(CharSequence seq, CharSequence searchSeq, int startPos) {
+        return seq != null && searchSeq != null ? seq.toString().indexOf(searchSeq.toString(), startPos) : -1;
+    }
+
+    /**
+     * 查询子字符串最后一个位置
+     * @param seq           字符串
+     * @param searchSeq     子字符串
+     * @return              int
+     */
+    public static int lastIndexOf(CharSequence seq, CharSequence searchSeq) {
+        return seq != null && searchSeq != null ? seq.toString().lastIndexOf(searchSeq.toString(), seq.length()) : -1;
+    }
+
+    /**
+     * 查询子字符串最后一个位置
+     * @param seq           字符串
+     * @param searchSeq     子字符串
+     * @param startPos      开始位置
+     * @return              int
+     */
+    public static int lastIndexOf(CharSequence seq, CharSequence searchSeq, int startPos) {
+        return seq != null && searchSeq != null ? seq.toString().lastIndexOf(searchSeq.toString(), startPos) : -1;
+    }
+
+    /**
+     * 判断是否包含字符串
+     * @param seq           字符串
+     * @param searchSeq     查询字符串
+     * @return              true/flase
+     */
+    public static boolean contains(CharSequence seq, CharSequence searchSeq) {
+        if (seq != null && searchSeq != null) {
+            return seq.toString().indexOf(searchSeq.toString(), 0) >= 0;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * 忽略大小写判断两字符串是否匹配
      * @param str1      字符串1
      * @param str2      字符串2
@@ -163,5 +292,8 @@ public class StringUtil {
         System.out.println(equalsIgnoreCase("add", "ADD"));
         System.out.println(compare("fadd", "dadd"));
         System.out.println(isBlank("  1"));
+        System.out.println(trim("  sd f "));
+        System.out.println(truncate("sadfsdfg", 3, 4));
+        System.out.println(indexOf("sdgdssf", "s"));
     }
 }
