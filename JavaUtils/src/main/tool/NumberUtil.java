@@ -150,5 +150,8 @@ public class NumberUtil {
         System.out.println(collectionMultiply(integerSet));
         //System.out.println(collectionDivide(1.01, 2));
         //System.out.println(collectionSubtract(1.01, 2));
+
+
+
     }
 }

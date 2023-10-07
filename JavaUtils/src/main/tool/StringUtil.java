@@ -1,5 +1,7 @@
 package main.tool;
 
+import java.math.BigDecimal;
+
 /**
  * 字符串操作
  * @author duancf
@@ -295,5 +297,7 @@ public class StringUtil {
         System.out.println(trim("  sd f "));
         System.out.println(truncate("sadfsdfg", 3, 4));
         System.out.println(indexOf("sdgdssf", "s"));
+
+
     }
 }
