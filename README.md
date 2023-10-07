@@ -11,7 +11,8 @@
 #### 获取某文件夹下下一级所有文件名称;获取某文件下文件夹和文件名称;生成一个临时文件;生成一个文件
 ### [StringUtil](https://github.com/duancf/JavaUtils/blob/master/JavaUtils/src/main/tool/StringUtil.java) --字符串工具类
 #### 判断字符串是否为空;判断是否存在空值（null、""）;去除前后空格;截取字符串;查询子字符串所在位置;查询子字符串最后一个位置;判断是否包含字符串;判断字符串是否是空白（包含空格+null+""）;忽略大小写判断两字符串是否匹配;比较两字符串大小;忽略大小写比较两字符串大小
-
+### [EmojiUtil](https://github.com/duancf/JavaUtils/blob/master/JavaUtils/src/main/tool/EmojiUtil.java) --表情工具类
+#### 过滤emoji;判断是否含有emoji表情符;
 
 
 
