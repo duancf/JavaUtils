@@ -3,6 +3,7 @@ package main.tool;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -342,6 +343,22 @@ public class DateUtil {
         return calendar.getTime();
     }
 
+    /**
+     * 将代表日期的长整形数值转换为y指定格式的字符串<br>
+     * 如果格式化模式为null或者为空,则默认使用yyyy-MM-dd HH:mm:ss
+     *
+     * @param datetime       需要转换的日期的长整形数值
+     * @param formatePattern 指定的日期格式
+     * @return 格式化后的日期字符串
+     */
+    public static String formatDate(long datetime, String formatePattern) {
+        if (datetime <= 0) {
+            return "";
+        }
+        Date date = new Date(datetime);
+        return formatDate(date, formatePattern);
+    }
+
     public static void main(String[] args) {
         //System.out.println("dateToString:" + dateToString(new Date(), DateStyle.YYYY_MM_DD_HH_MM_CN.value));
         //ystem.out.println("getLastYear:" + getLastYear());
@@ -356,6 +373,5 @@ public class DateUtil {
         //System.out.println("setMonth:" + formatDate(setMonth(new Date(), 7), DateStyle.YYYY_MM_DD_HH_MM_SS_DOT.value));
         //System.out.println("setYear:" + formatDate(setYear(new Date(), 20000), DateStyle.YYYY_MM_DD_HH_MM_SS_DOT.value));
         //System.out.println("setSecond:" + formatDate(setMillSecond(new Date(), 2000), DateStyle.YYYY_MM_DD_T_HH_MM_SS_Z.value));
-        System.out.println(formatDate(getCurrentZeroPointDate(), DateStyle.YYYY_MM_DD_HH_MM_SS_DOT.value));
     }
 }
